@@ -1,4 +1,4 @@
-# Desktop Cleaner Script
+# Desktop Cleaner Application
 
 ## Table of contents
 
@@ -6,68 +6,31 @@
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Usage](#usage)
-- [Scheduling](#scheduling)
-- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 
 
 ## Overview
-The Desktop Cleaner Script is a Python application designed to help users automatically organize
-files on their desktop into specified folders based on file extensions or predefined rules. 
-This tool aims to keep your desktop neat and make file management easier.
+The Desktop Cleaner Application is a Python-based tool designed to help users organize files on their desktop into specified folders based on file extensions. It features a simple graphical user interface (GUI) for easy operation, including the ability to schedule automatic cleaning at specified intervals.
 
 ## Features
-* Automatic File Organization: Moves files into folders based on their extensions.
-* Scheduled Cleaning: Option to set the script to run automatically at specified intervals (e.g., daily
-or weekly).
-* Customizable Rules: Users can define their own rules for how files should be organized.
-* Simple GUI: A basic graphical user interface for easier configuration and manual triggering of the
-cleaning process.
+- **File Organization**: Automatically moves files into folders based on their extensions.
+- **Scheduling**: Users can schedule the cleaning process to run automatically.
+- **GUI**: Offers a simple and accessible interface for all users.
 
 ## Requirements
-* Python 3.6 or newer
-* Operating System: Windows, macOS, or Linux
+- Python 3.6 or newer.
+- Tkinter for the GUI (usually included with Python).
 
 ## Installation
-1. Clone the repository or download the ZIP file.
-  git clone https://github.com/BejarL/desktop-cleaner.git
-2. Navigate to the project directory.
-  cd desktop-cleaner
-3. (Optional) Create a virtual environment and activate it.
-  python -m venv venv
-  source venv/bin/activate # On Windows use `venv\Scripts\activate`
-4. Install any dependencies.
-  pip install -r requirements.txt
+1. Clone the repository or download the source code.
+2. Ensure Python 3.6 or newer is installed on your system.
 
-## Configuration
-Before running the script, you need to configure your rules ans settings in `config.py`. Edit the 
-`DESKTOP_PATH` to point to your desktop directory and define `ORGANIZE_RULES` for how you want your files 
-organized.
-  
-Example config.py:
-    `DESKTOP_PATH = '/Users/username/Desktop'  # Update this path
-    ORGANIZE_RULES = {
-        'txt': 'Text Files',
-        'pdf': 'PDF Documents',
-        ...
-    }`
 ## Usage
-* To run the desktop cleaner:
-    python cleaner.py
-* For GUI.py
-    python gui.py
-
-## Scheduling
-To enable scheduled cleaning, refer to the `scheduled_organize` function in `cleaner.py`. By default,
-it's ser to run every 24 hours. Adjust the interval as needed.
-
-## Troubleshooting
-* Script doesn't run: Ensure Python is correctly installed and that you're using the right version.
-* Files aren't moved: Check that `DESKTOP_PATH` in `config.py` correctly point to your desktop.
-  Ensure file permissions allow the script to move files.
+1. **Run the Application**: Execute `python gui.py` from the command line.
+2. **Select Desktop Folder**: Use the GUI to select the folder you wish to organize.
+3. **Run Cleaner**: Click the "Run Cleaner Now" button to start the organization process immediately.
+4. **Schedule Cleaning**: Use the "Schedule Automatic Cleaning" button to set up cleaning at regular intervals.
 
 ## Contributing
-Contributions are welcome! If you have suggestions for improvement or bugs fixes, please open an issue
-or submit a pull request.
+Contributions are welcome. If you have suggestions or want to contribute to the project, please feel free to make a pull request or open an issue.

@@ -4,32 +4,32 @@ from datetime import datetime
 import logging
 import sched
 import time
-from config import DESKTOP_PATH, ORGANIZE_RULES, LOG_PATH
+from config import ORGANIZE_RULES, LOG_PATH
 
-# Setup logging
-logging.basicConfig(filename=LOG_PATH, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 scheduler = sched.scheduler(time.time, time.sleep)
 
-def organize_desktop():
-  """Organize files on the desktop into folders based on file extensions."""
-  try:
-    files = [f for f in os.listdir(DESKTOP_PATH) if os.path.isfile(os.path.join(DESKTOP_PATH, f))]
-    for file in files:
-      try:
-        extension = file.split('.')[-1]
-        if extension in ORGANIZE_RULES:
-          destination_path = os.path.join(DESKTOP_PATH, ORGANIZE_RULES[extension])
-          if not os.path.exists(destination_path):
-            os.makedirs(destination_path)
-          shutil.move(os.path.join(DESKTOP_PATH, file), destination_path)
-          logging.info(f'Moved file {file} to {destination_path}')
-        else:
-          logging.info(f'No rule defined for file {file}. Skipping.')
-      except Exception as e:
-        logging.error(f'Error moving file {file}: {e}')
-  except Exception as e:
-    logging.error(f'Failed to organize desktop: {e}')
+logging.basicConfig(filename=LOG_PATH, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+
+def organize_desktop(desktop_path):
+    """Organize files on the desktop into folders based on file extensions."""
+    try:
+        files = [f for f in os.listdir(desktop_path) if os.path.isfile(os.path.join(desktop_path, f))]
+        for file in files:
+            try:
+                extension = file.split('.')[-1]
+                if extension in ORGANIZE_RULES:
+                    destination_path = os.path.join(desktop_path, ORGANIZE_RULES[extension])
+                    if not os.path.exists(destination_path):
+                        os.makedirs(destination_path)
+                    shutil.move(os.path.join(desktop_path, file), destination_path)
+                    logging.info(f'Moved file {file} to {destination_path}')
+                else:
+                    logging.info(f'No rule defined for file {file}. Skipping.')
+            except Exception as e:
+                logging.error(f'Error moving file {file}: {e}')
+    except Exception as e:
+        logging.error(f'Failed to organize desktop: {e}')
 
 def scheduled_organize(interval, action, actionargs=()):
   """
